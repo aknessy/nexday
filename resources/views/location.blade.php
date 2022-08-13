@@ -28,10 +28,20 @@
                 </a>
             </div>
         </div>
+        <div class="bg-white w-full flex flex-row items-center justify-between">
+            <div class="flex flex-row w-full p-1 space-x-1">
+                <a href="{{ url('register') }}" class="p-2 text-sm {{ session('basicInformation') ? 'bg-blue-300 border-b-4 border-b-blue-300 cursor-not-allowed' : 'border-b-4 border-b-transparent hover:border-b-blue-700' }}">Basic Information</a>
+                <a href="{{ url('register/location') }}" class="p-2 text-sm {{ isset(session('basicInformation')['longitudeLatitude']) ? 'bg-blue-300 cursor-not-allowed' : 'cursor-not-allowed border-b-4 hover:border-b-blue-700 border-b-blue-700' }}">Location (Longitude/Latitude)</a>
+                <a href="{{ url('register/terms') }}" class="p-2 text-sm {{ isset(session('basicInformation')['terms']) ? 'bg-blue-300' : 'border-b-4 border-b-transparent hover:border-b-blue-700' }}">Terms & Conditions</a>
+            </div>
+            <div class="md:hidden sm:visible sm:flex sm:flex-col sm:items-center sm:justify-center">
+                <lord-icon src="https://cdn.lordicon.com/qfzvbrrn.json" trigger="morph" class="w-8 h-8"></lord-icon>
+            </div>
+        </div>
         <div class="min-h-screen flex w-full">
-            <div class="bg-white flex flex-col w-5/12 max-w-sm space-y-3 p-6">
+            <div class="flex flex-col w-5/12 max-w-sm space-y-3 p-6">
                 <img src="{{ asset('images/urban-delivery.png') }}" alt="A Gift That Helps You Grow" class="w-auto h-auto" />
-                <h1 class="text-gray-700 font-bold font-sora text-4xl">Publish your current location and become an <em class="font-sans text-sky-700 bold">autodot</em></h1>
+                <h1 class="text-gray-700 font-bold font-sora text-3xl">Publish your current location and become an <em class="font-sans text-sky-700 bold">autodot</em></h1>
                 <p class="text-neutral-700 font-sans text-md">The caveat of this is that you help others like you, to have better experience with vetting and shipping of products. It's a community of service, a government of some sort. Financially, it could be rewarding too, you'll see!</p>
                 <div class="bg-sky-50 rounded-md text-justify text-neutral-500 font-sans text-sm p-3 space-y-2">
                     <p class="text-neutral-500 font-sans text-sm">Click on the <x-generated-icons.icon-map-locator-alt class="w-6 h-6 fill-current text-slate-600 inline" /> icon on the top-right corner of your browser screen, beside the textfield and grant the browser the required permissions needed  to geolocate your current position.</p>
@@ -40,16 +50,6 @@
                 <a href="#" class="mt-6 pt-6 underline text-gray-400 hover:text-gray-500 text-sm font-sans italic">What is an <span class="text-sky-700">autodot</span>?</a>
             </div>
             <div class="w-full items-center justify-center">
-                <div class="w-full flex flex-row items-center justify-between p-4">
-                    <div class="flex flex-row bg-white w-full rounded-md p-0.5 space-x-1">
-                        <a href="{{ url('register') }}" class="p-3 {{ session('basicInformation') ? 'bg-blue-300 border-b-4 rounded-md border-b-blue-300 cursor-not-allowed' : 'border-b-4 border-b-transparent hover:border-b-blue-700' }}">Basic Information</a>
-                        <a href="{{ url('register/location') }}" class="p-3 {{ isset(session('basicInformation')['longitudeLatitude']) ? 'bg-blue-300 rounded-md cursor-not-allowed' : 'cursor-not-allowed border-b-4 hover:border-b-blue-700 border-b-blue-700' }}">Location (Longitude/Latitude)</a>
-                        <a href="{{ url('register/terms') }}" class="p-3 {{ isset(session('basicInformation')['terms']) ? 'bg-blue-300 rounded-md' : 'border-b-4 border-b-transparent hover:border-b-blue-700' }}">Terms & Conditions</a>
-                    </div>
-                    <div class="md:hidden sm:visible sm:flex sm:flex-col sm:items-center sm:justify-center">
-                        <lord-icon src="https://cdn.lordicon.com/qfzvbrrn.json" trigger="morph" class="w-8 h-8"></lord-icon>
-                    </div>
-                </div>
                 <div class="flex flex-col items-center justify-center p-8">
                     <form method="POST" action="{{ route('process-location') }}" class="relative min-w-min w-full h-full min-h-screen bg-white/70 backdrop-blur-sm shadow-2xl p-5 border border-solid border-gray-30 rounded-md">
                         @csrf
@@ -81,13 +81,13 @@
                 </div>
                  <div class="flex mt-5 items-center justify-around">
                     <div class="flex flex-row justify-between items-center space-x-5 text-gray-500">
-                        <a href="{{  url('/') }}" class="hover:underline">Home</a>
-                        <a href="#" class="hover:underline">Privacy Policy</a>
-                        <a href="#" class="hover:underline">Terms of Service</a>
-                        <a href="#" class="hover:underline">About</a>
+                        <a href="{{  url('/') }}" class="hover:underline text-xs">Home</a>
+                        <a href="#" class="hover:underline text-xs">Privacy Policy</a>
+                        <a href="#" class="hover:underline text-xs">Terms of Service</a>
+                        <a href="#" class="hover:underline text-xs">About</a>
                     </div>
                     <div class="flex justify-center items-center p-6 text-gray-500">
-                        <p class="text-gray-300">All rights reserved. &copy;{{ date('Y') }} Aknessy Resources</p>
+                        <p class="text-gray-300 text-xs">All rights reserved. &copy;{{ date('Y') }} Aknessy Resources</p>
                     </div>
                 </div>
             </div>

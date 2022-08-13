@@ -17,7 +17,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('home');
 
 Route::get('/php', function () {
     return response()->json([
@@ -41,7 +41,7 @@ Route::get('register/success', [RegisteredUserController::Class, 'AccountCreated
 Route::get('register/fail', [RegisteredUserController::class, 'AccountCreatedFail']);
 
 Route::get('register/fetchStates/{countryCode}', [RegisteredUserController::class, 'FetchOriginStates']);
-Route::get('register/fetchProvinces/{stateCode}', [RegisteredUserController::class, 'FetchOriginProvinces']);
+Route::get('register/fetchProvinces/{countryCode}/{stateCode}', [RegisteredUserController::class, 'FetchOriginProvinces']);
 
 Route::get('register/verify', function(){
     return view('emails.account-created')->with(['email'=>'test@example.com','accountPassword'=>'secret1234','verifyToken'=>'3ewr3r4wrw']);

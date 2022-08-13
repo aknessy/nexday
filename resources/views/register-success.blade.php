@@ -66,14 +66,14 @@
                         </defs>
                     </svg>
 
-                    <div class="flex flex-row justify-between items-center space-x-5 text-gray-500">
-                        <a href="{{  url('/') }}" class="hover:underline">Home</a>
-                        <a href="#" class="hover:underline">Privacy Policy</a>
-                        <a href="#" class="hover:underline">Terms of Service</a>
-                        <a href="#" class="hover:underline">About</a>
+                    <div class="flex flex-row justify-between items-center space-x-4 text-gray-500">
+                        <a href="{{  url('/') }}" class="hover:underline text-xs">Home</a>
+                        <a href="#" class="hover:underline text-xs">Privacy Policy</a>
+                        <a href="#" class="hover:underline text-xs">Terms of Service</a>
+                        <a href="#" class="hover:underline text-xs">About</a>
                     </div>
-                    <div class="flex justify-center items-center pt-10 text-gray-500">
-                        <p class="text-gray-300">All rights reserved. &copy;{{ date('Y') }} Aknessy Resources</p>
+                    <div class="flex justify-center items-center pt-7 text-gray-500">
+                        <p class="text-gray-400 text-xs">All rights reserved. &copy;{{ date('Y') }} Aknessy Resources</p>
                     </div>
                 </div>
             </div>

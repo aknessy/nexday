@@ -23,23 +23,23 @@
                 </a>
             </div>
         </div>
+        <div class="w-full flex flex-row items-center justify-between">
+            <div class="flex bg-white flex-row w-full p-1 space-x-1">
+                <a href="{{ url('register') }}" class="p-2 text-sm {{ session('basicInformation') ? 'bg-blue-300 border-b-transparent cursor-not-allowed' : 'border-b-4 border-b-blue-700 hover:border-b-blue-700 cursor-not-allowed' }}">Basic Information</a>
+                <a href="{{ url('register/location') }}" class="p-2 text-sm {{ isset(session('basicInformation')['longitudeLatitude']) ? 'bg-blue-300' : 'border-b-4 border-b-transparent hover:border-b-blue-700' }}">Location (Longitude/Latitude)</a>
+                <a href="{{ url('register') }}" class="p-2 text-sm {{ isset(session('basicInformation')['terms']) ? 'bg-blue-300' : 'border-b-4 border-b-transparent hover:border-b-blue-700' }}">Terms & Conditions</a>
+            </div>
+            <div class="md:hidden sm:visible sm:flex sm:flex-col sm:items-center sm:justify-center">
+                <lord-icon src="https://cdn.lordicon.com/qfzvbrrn.json" trigger="morph" class="w-8 h-8"></lord-icon>
+            </div>
+        </div>
         <div class="min-h-screen flex w-full">
-            <div class="bg-white flex flex-col w-5/12 max-w-sm space-y-3 p-6">
+            <div class="flex flex-col w-5/12 max-w-sm space-y-3 p-6">
                 <img src="{{ asset('images/urban-mobile-shopping.png') }}" alt="A Gift That Helps You Grow" class="w-auto h-auto" />
-                <h1 class="font-sora text-4xl text-gray-700 font-bold">Create a free account</h1>
-                <p class="font-sans text-lg">Start your online presence by creating a free user account. This will grant you access to a whole stack of tools to enable you set up your new business. Don't worry, it will only take you a couple of minutes!</p>
+                <h1 class="font-sora text-3xl text-gray-700 font-bold">Create a free account</h1>
+                <p class="font-sans text-md">Start your online presence by creating a free user account. This will grant you access to a whole stack of tools to enable you set up your new business. Don't worry, it will only take you a couple of minutes!</p>
             </div>
             <div class="w-full items-center justify-center">
-                <div class="w-full flex flex-row items-center justify-between p-4">
-                    <div class="flex bg-white flex-row w-full p-0.5 rounded-md space-x-1">
-                        <a href="{{ url('register') }}" class="p-3 {{ session('basicInformation') ? 'bg-blue-300 border-b-transparent rounded-md cursor-not-allowed' : 'border-b-4 border-b-blue-700 hover:border-b-blue-700 cursor-not-allowed' }}">Basic Information</a>
-                        <a href="{{ url('register/location') }}" class="p-3 {{ isset(session('basicInformation')['longitudeLatitude']) ? 'bg-blue-300 rounded-md' : 'border-b-4 border-b-transparent hover:border-b-blue-700' }}">Location (Longitude/Latitude)</a>
-                        <a href="{{ url('register') }}" class="p-3 {{ isset(session('basicInformation')['terms']) ? 'bg-blue-300 rounded-md' : 'border-b-4 border-b-transparent hover:border-b-blue-700' }}">Terms & Conditions</a>
-                    </div>
-                    <div class="md:hidden sm:visible sm:flex sm:flex-col sm:items-center sm:justify-center">
-                        <lord-icon src="https://cdn.lordicon.com/qfzvbrrn.json" trigger="morph" class="w-8 h-8"></lord-icon>
-                    </div>
-                </div>
                 <div class="flex flex-col items-center justify-center p-8">
                     <form method="POST" action="{{ route('process-basic') }}" class="min-w-min bg-white/70 backdrop-blur-sm shadow-2xl p-5 border border-solid border-gray-30 rounded-md">
                          @csrf
@@ -52,27 +52,27 @@
                             </div>
                         @else
                             <div class="flex flex-col space-x-0 mb-10 pb-5 border-b border-b-slate-100">
-                                <h3 class="font-bold text-xl text-slate-500">Provide your basic information by filling the form below.</h3>
-                                <p class="p-0 m-0 font-sans text-md text-slate-500">This is a mandatory step and all form fields are required!</p>
+                                <h3 class="font-bold text-md text-slate-500">Provide your basic information by filling the form below.</h3>
+                                <p class="p-0 m-0 font-sans text-sm text-slate-500">This is a mandatory step and all form fields are required!</p>
                             </div>
                         @endif
 
                         <div class="flex flex-wrap -mx-3">
                             <div class="w-full md:w-1/2 px-3 mb-3 md:mb-0">
                                 <x-label for="firstname" :value="__('First Name')" />
-                                <x-input id="firstname" type="text" class="appearance-none block w-full bg-gray-200 text-gray-700 bg-opacity-30 border border-gray-200 focus:outline-none focus:bg-opacity-40" name="firstname" :value="old('firstname')" required autofocus />
+                                <x-input id="firstname" type="text" class="appearance-none block w-full bg-gray-200 text-gray-700 bg-opacity-30 border border-gray-200 focus:outline-none focus:bg-opacity-40 text-xs" name="firstname" :value="old('firstname')" required autofocus />
                             </div>
                             <div class="w-full md:w-1/2 px-3 mb-3 md:mb-0">
                                 <x-label for="middlename" :value="__('Middle name')" />
-                                <x-input id="middlename" type="text" class="appearance-none block w-full bg-gray-200 text-gray-700 bg-opacity-30 border border-gray-200 focus:outline-none focus:bg-opacity-40" name="middlename" :value="old('middlename')" required />
+                                <x-input id="middlename" type="text" class="appearance-none block w-full bg-gray-200 text-gray-700 bg-opacity-30 border border-gray-200 focus:outline-none focus:bg-opacity-40 text-xs" name="middlename" :value="old('middlename')" required />
                             </div>
                             <div class="w-full md:w-1/2 px-3 mb-3 md:mb-0">
                                 <x-label for="lastname" :value="__('Last name')" />
-                                <x-input id="lastname" type="text" class="appearance-none block w-full bg-gray-200 text-gray-700 bg-opacity-30 border border-gray-200 focus:outline-none focus:bg-opacity-40" name="lastname" :value="old('lastname')" required />
+                                <x-input id="lastname" type="text" class="appearance-none block w-full bg-gray-200 text-gray-700 bg-opacity-30 border border-gray-200 focus:outline-none focus:bg-opacity-40 text-xs" name="lastname" :value="old('lastname')" required />
                             </div>
                             <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
                                 <x-label for="gender" :value="__('Gender')" />
-                                <select class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-2.5 px-4 pr-8 rounded leading-tight bg-opacity-30 focus:outline-none focus:bg-opacity-40" id="gender" name="gender">
+                                <select class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-2.5 px-4 pr-8 rounded leading-tight bg-opacity-30 focus:outline-none focus:bg-opacity-40 text-xs" id="gender" name="gender">
                                     <option value="">Select Gender</option>
                                     <option value="female">Female</option>
                                     <option value="male">Male</option>
@@ -82,15 +82,15 @@
                         <div class="flex flex-wrap -mx-3">
                             <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
                                 <x-label for="phone-num" :value="__('Phone Number')" />
-                                <x-input id="phone-num" name="phonenumber" type="text" class="appearance-none block w-full bg-gray-200 text-gray-700 bg-opacity-30 border border-gray-200 focus:outline-none focus:bg-opacity-40" />
+                                <x-input id="phone-num" name="phonenumber" type="text" class="appearance-none block w-full bg-gray-200 text-gray-700 bg-opacity-30 border border-gray-200 focus:outline-none focus:bg-opacity-40 text-xs" />
                             </div>
                             <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
                                 <x-label for="email" :value="__('Email')" />
-                                <x-input id="email" type="email" class="appearance-none block w-full bg-gray-200 text-gray-700 bg-opacity-30 border border-gray-200 focus:outline-none focus:bg-opacity-40" name="email" :value="old('email')" required placeholder="Email Address" />
+                                <x-input id="email" type="email" class="appearance-none block w-full bg-gray-200 text-gray-700 bg-opacity-30 border border-gray-200 focus:outline-none focus:bg-opacity-40 text-xs" name="email" :value="old('email')" required placeholder="Email Address" />
                             </div>
                             <div class="w-full md:w-1/3 px-3 mb-3">
                                 <x-label for="country" :value="__('Country')" />
-                                <select id="country" class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-2.5 px-4 pr-8 rounded leading-tight bg-opacity-30 focus:outline-none focus:bg-opacity-40" name="country">
+                                <select id="country" class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-2.5 px-4 pr-8 rounded leading-tight bg-opacity-30 focus:outline-none focus:bg-opacity-40 text-xs" name="country">
                                     <option value="">Select Country</option>
                                     @foreach ($countries as $option)
                                      <option value="{{ $option['code'] }}">{{ $option['name'] }}</option>   
@@ -99,29 +99,29 @@
                             </div>
                              <div class="w-full md:w-1/3 px-3 mb-3">
                                 <x-label for="states" :value="__('State')" />
-                                <select id="state" disabled class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-2.5 px-4 pr-8 rounded leading-tight bg-opacity-30 focus:outline-none focus:bg-opacity-40" name="state">
+                                <select id="state" disabled class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-2.5 px-4 pr-8 rounded leading-tight bg-opacity-30 focus:outline-none focus:bg-opacity-40 text-xs" name="state">
                                     <option value="">Select City</option>
                                 </select>
                             </div>
                             <div class="w-full md:w-1/3 px-3 mb-3">
                                 <x-label for="city" :value="__('City')" />
-                                <select id="city" disabled class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-2.5 px-4 pr-8 rounded leading-tight bg-opacity-30 focus:outline-none focus:bg-opacity-40" name="province">
+                                <select id="city" disabled class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-2.5 px-4 pr-8 rounded leading-tight bg-opacity-30 focus:outline-none focus:bg-opacity-40 text-xs" name="province">
                                     <option value="">Select Province</option>
                                 </select>
                             </div>
                             <div class="w-full px-3 mb-6 md:mb-0">
                                 <x-label for="address" :value="__('Address')" />
-                                <x-input id="address" type="text" name="address" class="appearance-none block w-full bg-gray-200 text-gray-700 bg-opacity-30 border border-gray-200 focus:outline-none focus:bg-opacity-40" :value="old('address')" />
+                                <x-input id="address" type="text" name="address" class="appearance-none block w-full bg-gray-200 text-gray-700 bg-opacity-30 border border-gray-200 focus:outline-none focus:bg-opacity-40 text-xs" :value="old('address')" />
                             </div>
                             <div class="w-full px-3 mb-6 md:mb-0">
                                 <x-label for="date-of-birth" :value="__('Date of Birth')" />
-                                <x-input id="date-of-birth" type="date" name="dateofbirth" class="appearance-none block w-full bg-gray-200 text-gray-700 bg-opacity-30 border border-gray-200 focus:outline-none focus:bg-opacity-40" :value="old('dateofbirth')" />
+                                <x-input id="date-of-birth" type="date" name="dateofbirth" class="appearance-none block w-full bg-gray-200 text-gray-700 bg-opacity-30 border border-gray-200 focus:outline-none focus:bg-opacity-40 text-xs" :value="old('dateofbirth')" />
                             </div>
                         </div>
                         <div class="flex flex-wrap -mx-3 mb-6 px-3">
                             <div class="w-full">
                                 <x-label for="user-category" :value="__('I am a?')" />
-                                <select id="user-category" class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-2.5 px-4 pr-8 rounded leading-tight bg-opacity-30 focus:outline-none focus:bg-opacity-40" name="usercategory">
+                                <select id="user-category" class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-2.5 px-4 pr-8 rounded leading-tight bg-opacity-30 focus:outline-none focus:bg-opacity-40 text-xs" name="usercategory">
                                     <option value=""></option>
                                     <option value="user">User</option>
                                     <option value="merchant">Merchant</option>
@@ -146,13 +146,13 @@
 
                 <div class="flex mt-5 items-center justify-around">
                     <div class="flex flex-row justify-between items-center space-x-5 text-gray-500">
-                        <a href="{{  url('/') }}" class="hover:underline">Home</a>
-                        <a href="#" class="hover:underline">Privacy Policy</a>
-                        <a href="#" class="hover:underline">Terms of Service</a>
-                        <a href="#" class="hover:underline">About</a>
+                        <a href="{{  url('/') }}" class="text-xs hover:underline">Home</a>
+                        <a href="#" class="text-xs hover:underline">Privacy Policy</a>
+                        <a href="#" class="text-xs hover:underline">Terms of Service</a>
+                        <a href="#" class="text-xs hover:underline">About</a>
                     </div>
                     <div class="flex justify-center items-center p-6 text-gray-500">
-                        <p class="text-gray-300">All rights reserved. &copy;{{ date('Y') }} Aknessy Resources</p>
+                        <p class="text-gray-300 text-xs">All rights reserved. &copy;{{ date('Y') }} Aknessy Resources</p>
                     </div>
                 </div>
             </div>
@@ -178,50 +178,70 @@
         var timeout = 3000
 
         countryTag.on('change', function(e){
-            $(activityLoader).show()
-            
-            var countryCode = $(this).val()
-            var html = '<option value="">Select State</option>'
+            if($(this).val() != '')
+            {
+                $(activityLoader).show()
+                
+                var countryCode = $(this).val()
+                var html = '<option value="">Select State</option>'
 
-            setTimeout(() => {
-                $.ajax({
-                    method : 'GET',
-                    url : "register/fetchStates/" + countryCode
-                }).done(function(result){
-                    for(let i = 0; i < result['names'].length; i++){
-                        html += '<option value="' + result['codes'][i] + '">' + result['names'][i] + '</option>';
-                    }
+                setTimeout(() => {
+                    $.ajax({
+                        method : 'GET',
+                        url : "register/fetchStates/" + countryCode
+                    }).done(function(result)
+                    {
+                        if(result.name.length > 0 && result.code.length > 0)
+                        {
+                            for(let i = 0; i < result['name'].length; i++){
+                                html += '<option value="' + result['code'][i] + '">' + result['name'][i] + '</option>';
+                            }
 
-                    statesTag.empty().append(html);
-                    statesTag.attr('disabled', false);
+                            statesTag.empty().append(html);
+                            statesTag.attr('disabled', false);
 
-                    $(activityLoader).hide()
-                })
-            }, timeout)
+                            $(activityLoader).hide()
+                        }else{
+                            html += '<option value="">No States Found</option>'
+                            $(activityLoader).hide()
+                        }
+                    })
+                }, timeout)
+            }
         })
 
         statesTag.on('change', function(){
-            $(activityLoader).show()
+            if(countryTag.val() != '' && $(this).val() != '')
+            {
+                $(activityLoader).show()
 
-            var selectedState = $(this).val()
-            var html = '<option value="">Select Province</option>'
+                var country = countryTag.val()
+                var selectedState = $(this).val()
+                var html = '<option value="">Select Province</option>'
 
-            setTimeout(() => {
-                $.ajax({
-                    method : 'GET',
-                    url : "register/fetchProvinces/" + selectedState
-                }).done(function(result){
-                    for(let i = 0; i < result.length; i++){
-                        html += '<option value="' + result[i] + '">' + result[i] + '</option>';
-                    }
+                setTimeout(() => {
+                    $.ajax({
+                        method : 'GET',
+                        url : "register/fetchProvinces/" + country + "/" + selectedState
+                    }).done(function(result)
+                    {
+                        if(result.length > 0)
+                        {
+                            for(let i = 0; i < result.length; i++){
+                                html += '<option value="' + result[i] + '">' + result[i] + '</option>';
+                            }
 
-                    LgasTag.empty().append(html);
-                    LgasTag.attr('disabled', false);
-                    
-                    $(activityLoader).hide()
-                })
-            }, timeout)
-
+                            LgasTag.empty().append(html);
+                            LgasTag.attr('disabled', false);
+                            
+                            $(activityLoader).hide()
+                        }else{
+                            html += '<option value="">No City/Cities Found</option>'
+                            $(activityLoader).hide()
+                        }
+                    })
+                }, timeout)
+            }
         })
     })
 </script>

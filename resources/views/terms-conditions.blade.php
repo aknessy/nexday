@@ -5,7 +5,7 @@
                 <img src="{{ asset('images/Nexday-Logo.png') }}" alt="Nextday Logo" class="w-24 h-12" />
             </div>
             <div class="flex align-center justify-end space-x-3">
-                <a href="{{ route('/') }}" class="flex align-center space-x-1 text-lg text-gray-700 p-2 hover:rounded-md hover:bg-blue-600 hover:shadow-lg hover:border-blue-900 hover:text-white focus:text-white active:bg-blue-600 ">
+                <a href="{{ route('home') }}" class="flex align-center space-x-1 text-lg text-gray-700 p-2 hover:rounded-md hover:bg-blue-600 hover:shadow-lg hover:border-blue-900 hover:text-white focus:text-white active:bg-blue-600 ">
                     <x-generated-icons.icon-home class="w-4 h-4 fill-current"/>
                     <span class="text-sm font-sans">Home</span>
                 </a>
@@ -23,14 +23,14 @@
                 </a>
             </div>
         </div>
-        <div class="min-h-screen flex flex-col items-center">
-            <div class="w-full flex flex-row items-center justify-start p-4">
-                <div class="flex bg-white flex-row w-full p-0.5 rounded-md space-x-1">
-                    <a href="{{ url('register') }}" class="p-3 {{ session('basicInformation') ? 'bg-blue-300 rounded-md border-b-4 border-b-blue-300 cursor-not-allowed' : 'border-b-4 border-b-transparent hover:border-b-blue-700 ' }}">Basic Information</a>
-                    <a href="{{ url('register/location') }}" class="p-3 {{ isset(session('basicInformation')['longitudeLatitude']) ? 'bg-blue-300 rounded-md border-b-4 border-b-blue-300 cursor-not-allowed' : 'border-b-4 border-b-transparent hover:border-b-blue-700' }}">Location (Longitude/Latitude)</a>
-                    <a href="{{ url('register') }}" class="p-3 {{ isset(session('basicInformation')['terms']) ? 'bg-blue-300 border-b-4 border-b-blue-300 cursor-not-allowed' : 'cursor-not-allowed border-b-4 border-b-blue-700' }}">Terms & Conditions</a>
-                </div>
+        <div class="w-full flex flex-row items-center justify-start">
+            <div class="flex bg-white flex-row w-full p-1 space-x-1">
+                <a href="{{ url('register') }}" class="p-2 text-sm {{ session('basicInformation') ? 'bg-blue-300 border-b-4 border-b-blue-300 cursor-not-allowed' : 'border-b-4 border-b-transparent hover:border-b-blue-700' }}">Basic Information</a>
+                <a href="{{ url('register/location') }}" class="p-2 text-sm {{ isset(session('basicInformation')['longitudeLatitude']) ? 'bg-blue-300 border-b-4 border-transparent cursor-not-allowed' : 'border-b-4 border-b-transparent hover:border-b-blue-700' }}">Location (Longitude/Latitude)</a>
+                <a href="{{ url('register') }}" class="p-2 text-sm {{ isset(session('basicInformation')['terms']) ? 'bg-blue-300 border-b-4 border-b-blue-300 cursor-not-allowed' : 'cursor-not-allowed border-b-4 border-b-blue-700' }}">Terms & Conditions</a>
             </div>
+        </div>
+        <div class="min-h-screen flex flex-col items-center">
             <div class="bg-white w-full md:w-6/12 md:bg-white/70 md:backdrop-blur-md shadow-2xl md:border md:border-solid md:border-gray-30 md:rounded-md sm:mt-5">
                 <x-auth-validation-errors class="mb-4" :errors="$errors" />
 
@@ -48,7 +48,7 @@
                         <p>Please read these terms and conditions carefully before using Our Service</p>
                     </div>
 
-                    <div class="bg-transparent border-solid border-slate-300/80 p-5 max-h-96 hover:scroll-auto overflow-x-auto">
+                    <div class="bg-transparent border-solid border-slate-300/80 p-5 max-h-96 hover:scroll-auto overflow-x-auto text-gray-500">
                         <div class="border-b border-slate-400/40 pb-2 mb-3 w-full">
                             <h2 class="font-bold text-sky-800 text-2xl">Interpretation and Definitions</h2>
                         </div>
@@ -122,7 +122,9 @@
 
                     <div class="flex flex-wrap bg-slate-200 justify-between">
                         <p class="leading-tight p-4 mb-0">
-                            <input type="checkbox" name="terms" class="rounded text-sky-600 mr-2 outline-none hover:outline-none focus:outline-none" :value="old('terms')" required />I have <b>carefully</b> read, understood and agreed to the Terms & Conditions of service guiding my use of the the services.
+                            <label>
+                                <input type="checkbox" name="terms" class="rounded text-sky-600 mr-2 outline-none hover:outline-none focus:outline-none" :value="old('terms')" required /><span class="text-gray-900">I have <b>carefully</b> read, understood and agreed to the Terms & Conditions of service guiding my use of the the services.</span>
+                            </label>
                         </p>
                         <div class="flex w-full justify-between items-center bg-slate-300 p-2">
                             <a class="text-sm text-gray-600 hover:text-gray-900 border rounded-md border-slate-300 hover:border-blue-500 hover:bg-blue-300 py-2 px-4" 
@@ -141,12 +143,12 @@
             <div class="flex mt-5 items-center justify-around">
                 <div class="flex flex-row justify-between items-center space-x-5 text-gray-500">
                     <a href="{{  url('/') }}" class="hover:underline">Home</a>
-                    <a href="#" class="hover:underline">Privacy Policy</a>
-                    <a href="#" class="hover:underline">Terms of Service</a>
-                    <a href="#" class="hover:underline">About</a>
+                    <a href="#" class="hover:underline text-xs">Privacy Policy</a>
+                    <a href="#" class="hover:underline text-xs">Terms of Service</a>
+                    <a href="#" class="hover:underline text-xs">About</a>
                 </div>
                 <div class="flex justify-center items-center p-6 text-gray-500">
-                    <p class="text-gray-300">All rights reserved. &copy;{{ date('Y') }} Aknessy Resources</p>
+                    <p class="text-gray-300 text-xs">All rights reserved. &copy;{{ date('Y') }} Aknessy Resources</p>
                 </div>
             </div>
         </div>

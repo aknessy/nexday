@@ -38,6 +38,7 @@ class RegisteredUserController extends Controller
      */
     public function index(Request $request)
     {           
+        // $request->session()->forget('basicInformation');
         return view('register',
             [
                 'countries' => Country::all()
@@ -286,6 +287,16 @@ class RegisteredUserController extends Controller
                  */
                 Mail::to($user->email)->send(new AccountCreated($user, $generatedPassword));
                 
+                /**
+                 * Create a notification for this action
+                 */
+                $notification = new \App\Classes\Notifications;
+                $notification->setType('register');
+                $notification->setOrigin($data['basicInformation']['firstname']);
+                $notification->setSubject('Register Activity');
+                $notification->setMessage("{$user->firstname} created a `{$user->usertype}` account ");
+                $notification->create();
+
                 $request->session()->forget('basicInformation');
                 return redirect('register/success');
             }
@@ -335,17 +346,24 @@ class RegisteredUserController extends Controller
      */
     public function FetchOriginStates(Request $request, $countryCode)
     {
-        $originCities = Origin::where('country_code', $countryCode)->get();
+        $originCities = Origin::where('code', $countryCode)->get();
         $toArray = $originCities->toArray();
-        $statesWithCodes['names'] = [];
-        $statesWithCodes['codes'] = [];
+        
+        $statesLga['name'] = [];
+        $statesLga['code'] = [];
 
-        foreach($toArray as $item => $value){
-            array_push($statesWithCodes['names'], $value['states']);
-            array_push($statesWithCodes['codes'], $value['code']);
+        foreach ($toArray as $key => $values) 
+        {
+            $statesLgaDecode = json_decode($values['states_lga']);
+            
+            foreach($statesLgaDecode as $k => $v)
+            {
+                array_push($statesLga['name'], $v->name);
+                array_push($statesLga['code'], $v->code);
+            }
         }
-
-        return $statesWithCodes;
+        
+        return $statesLga;
     }
 
     /**
@@ -356,10 +374,24 @@ class RegisteredUserController extends Controller
      * 
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function FetchOriginProvinces(Request $request, $stateCode)
+    public function FetchOriginProvinces(Request $request, $countryCode, $stateCode)
     {
-        $originLgas = Origin::where('code', $stateCode)->value('lgas');
-        return json_decode($originLgas, true);
+        $originCities = Origin::where('code', $countryCode)->get();
+        $toArray = json_decode($originCities, true);
+        $originLgas = NULL;
+ 
+        foreach ($toArray as $key => $values) 
+        {
+            $statesLgaDecode = json_decode($values['states_lga']);
+            
+            foreach($statesLgaDecode as $k => $v)
+            {
+                if($v->code == $stateCode)
+                    $originLgas = $v->cities;
+            }
+        }
+        
+        return $originLgas;
     }
 
     /**
